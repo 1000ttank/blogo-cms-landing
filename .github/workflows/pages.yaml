@@ -2,7 +2,7 @@ name: Deploy Hugo site to Pages
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main", "master"]
   workflow_dispatch:
 
 permissions:
@@ -43,7 +43,9 @@ jobs:
         env:
           HUGO_ENVIRONMENT: production
           HUGO_ENV: production
-        run: hugo --gc --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
+          # 项目站点 baseURL：https://<owner>.github.io/<repo>/
+          BASE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
+        run: hugo --gc --minify --baseURL "${{ env.BASE_URL }}"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
