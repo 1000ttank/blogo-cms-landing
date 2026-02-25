@@ -1,0 +1,19 @@
+<script>
+(function(){
+  var cards=document.querySelectorAll('.blogo-card-animate');
+  var io1=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting)e.target.classList.add('blogo-visible');
+    });
+  },{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
+  cards.forEach(function(c){io1.observe(c);});
+
+  var features=document.querySelectorAll('.blogo-feature-item-animate');
+  var io2=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting)e.target.classList.add('blogo-feature-visible');
+    });
+  },{threshold:0.1,rootMargin:'0px 0px -80px 0px'});
+  features.forEach(function(f){io2.observe(f);});
+})();
+</script>

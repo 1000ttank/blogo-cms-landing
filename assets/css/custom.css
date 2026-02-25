@@ -1,0 +1,614 @@
+/* Blogo CMS landing - Cloudreve style, light/dark mode */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --blogo-bg: #ffffff;
+  --blogo-bg-soft: #f8fafc;
+  --blogo-card: #ffffff;
+  --blogo-card-hover: #f1f5f9;
+  --blogo-primary: #0ea5e9;
+  --blogo-primary-hover: #0284c7;
+  --blogo-accent: #64748b;
+  --blogo-text: #0f172a;
+  --blogo-muted: #64748b;
+  --blogo-border: #e2e8f0;
+  --blogo-code-bg: #f1f5f9;
+}
+
+html.dark,
+.dark {
+  --blogo-bg: #111;
+  --blogo-bg-soft: #111;
+  --blogo-card: #111;
+  --blogo-card-hover: #252525;
+  --blogo-primary: #38bdf8;
+  --blogo-primary-hover: #7dd3fc;
+  --blogo-accent: #94a3b8;
+  --blogo-text: #f8fafc;
+  --blogo-muted: #94a3b8;
+  --blogo-border: #334155;
+  --blogo-code-bg: #1e293b;
+}
+
+.blogo-landing {
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  background: var(--blogo-bg);
+  color: var(--blogo-text);
+  padding-bottom: 0;
+  padding-top: 200px;
+}
+
+.blogo-landing .container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Hero - 双栏布局、打字机、墨水效果 */
+.blogo-hero-wrapper {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 0;
+}
+
+.blogo-hero-ink {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 80% 60% at 75% 40%, rgba(191, 219, 254, 0.65) 0%, transparent 55%),
+              radial-gradient(ellipse 60% 50% at 85% 60%, rgba(254, 249, 195, 0.55) 0%, transparent 50%),
+              radial-gradient(ellipse 40% 40% at 70% 30%, rgba(191, 219, 254, 0.45) 0%, transparent 45%);
+  animation: blogo-ink-flow 8s ease-in-out infinite;
+}
+
+@keyframes blogo-ink-flow {
+  0%, 100% { opacity: 1; transform: scale(1) translate(0, 0); }
+  25% { opacity: 1; transform: scale(1.08) translate(8%, -5%); }
+  50% { opacity: 0.95; transform: scale(0.95) translate(-5%, 8%); }
+  75% { opacity: 1; transform: scale(1.05) translate(2%, 3%); }
+}
+
+html.dark .blogo-hero-ink,
+.dark .blogo-hero-ink {
+  background: radial-gradient(ellipse 80% 60% at 75% 40%, rgba(59, 130, 246, 0.3) 0%, transparent 55%),
+              radial-gradient(ellipse 60% 50% at 85% 60%, rgba(254, 243, 199, 0.25) 0%, transparent 50%),
+              radial-gradient(ellipse 40% 40% at 70% 30%, rgba(59, 130, 246, 0.2) 0%, transparent 45%);
+}
+
+.blogo-hero-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  padding: 80px 24px 72px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .blogo-hero-inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .blogo-hero-left .blogo-buttons { justify-content: center; }
+}
+
+.blogo-hero-left {
+  min-width: 0;
+}
+
+.blogo-hero-title {
+  font-size: 40px;
+  font-weight: 700;
+  margin: 0 0 20px;
+  letter-spacing: -0.02em;
+  line-height: 1.4;
+}
+
+.blogo-typewriter-wrap {
+  display: inline;
+}
+
+.blogo-typewriter {
+  color: rgb(47, 106, 217);
+  font-weight: 600;
+  font-size: 40px;
+}
+
+.blogo-typewriter-cursor {
+  color: rgb(47, 106, 217);
+  font-weight: 600;
+  animation: blogo-cursor-blink 0.6s steps(1) infinite;
+}
+
+@keyframes blogo-cursor-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.blogo-hero-subtitle {
+  font-size: 15px;
+  color: var(--blogo-muted);
+  margin: 0 0 28px;
+  line-height: 1.7;
+}
+
+.blogo-hero .blogo-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.blogo-landing .blogo-btn {
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  transition: 0.2s ease;
+}
+
+.blogo-btn-deploy {
+  background: rgb(47, 106, 217);
+  color: white;
+  border: none;
+}
+
+.blogo-btn-deploy:hover {
+  background: rgb(35, 85, 180);
+  transform: translateY(-1px);
+}
+
+.blogo-btn-start {
+  background: white;
+  color: rgb(47, 106, 217);
+  border: 2px solid var(--blogo-border);
+}
+
+.blogo-btn-start:hover {
+  background: rgba(47, 106, 217, 0.08);
+  transform: translateY(-1px);
+}
+
+html.dark .blogo-btn-start,
+.dark .blogo-btn-start {
+  background: var(--blogo-bg);
+  color: rgb(47, 106, 217);
+  border-color: var(--blogo-border);
+}
+
+/* 分割线：曲线，右侧向上幅度大，左侧小，无描边 */
+.blogo-hero-divider {
+  position: relative;
+  z-index: 1;
+  height: 60px;
+  margin-top: -1px;
+}
+
+.blogo-hero-divider svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  fill: var(--blogo-bg);
+  stroke: none;
+}
+
+.blogo-hero-divider path {
+  fill: var(--blogo-bg);
+}
+
+/* 右侧截图：在文字右侧，自适应，逆时针 25 度 */
+.blogo-hero-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.blogo-hero-screenshot {
+  position: relative;
+  transform: rotate(-25deg);
+  max-width: 90%;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.blogo-hero-screenshot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Hero 截图：两张图叠放，可见的那张用 relative 撑开高度 */
+.blogo-hero-screenshot .blogo-img-light {
+  position: relative;
+}
+.blogo-hero-screenshot .blogo-img-dark {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+html.dark .blogo-hero-screenshot .blogo-img-light {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+html.dark .blogo-hero-screenshot .blogo-img-dark {
+  position: relative;
+}
+
+.blogo-hero-screenshot-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 320px;
+  min-height: 200px;
+  background: var(--blogo-code-bg);
+  border: 2px dashed var(--blogo-border);
+  color: var(--blogo-muted);
+  font-size: 14px;
+}
+
+.blogo-hero-screenshot-placeholder small {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+/* Section - Main Features */
+.blogo-landing .blogo-section {
+  padding: 64px 0;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.blogo-landing .blogo-philosophy {
+  margin: 0 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  max-width: none;
+}
+
+.blogo-landing .blogo-section-heading {
+  font-size: 32px;
+  font-weight: 600;
+  margin: 0 0 16px;
+  text-align: center;
+  line-height: 32px;
+}
+
+.blogo-landing .blogo-section-intro {
+  font-size: 20px;
+  color: var(--blogo-muted);
+  margin: 0 0 40px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.blogo-landing .blogo-philosophy-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(280px, 500px));
+  gap: 24px;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+@media (max-width: 1600px) {
+  .blogo-landing .blogo-philosophy-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.blogo-landing .blogo-section-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  border-left: 4px solid var(--blogo-primary);
+  padding-left: 12px;
+}
+
+.blogo-landing .blogo-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.blogo-landing .blogo-card-icon {
+  color: rgb(47, 106, 217);
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.blogo-landing .blogo-card-icon svg {
+  display: block;
+}
+
+.blogo-landing .blogo-card {
+  background: var(--blogo-card);
+  padding: 24px;
+  border-radius: 12px;
+  border: 1px solid var(--blogo-border);
+  transition: 0.2s ease;
+}
+
+.blogo-landing .blogo-card:hover {
+  background: var(--blogo-card-hover);
+  border-color: var(--blogo-muted);
+  transform: translateY(-2px);
+}
+
+/* 核心特性：滑动到后向上弹出 */
+.blogo-card-animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.5s ease, transform 0.5s ease, background 0.2s, border-color 0.2s;
+}
+
+.blogo-card-animate.blogo-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.blogo-card-animate.blogo-visible:hover {
+  transform: translateY(-2px);
+}
+
+.blogo-landing .blogo-philosophy .blogo-card {
+  text-align: center;
+}
+
+.blogo-landing .blogo-card strong {
+  display: block;
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.blogo-landing .blogo-card p {
+  margin: 0;
+  font-size: 16px;
+  color: var(--blogo-muted);
+  line-height: 1.5;
+}
+
+/* Architecture - HTML 美化，逐个点亮动画 */
+.blogo-landing .blogo-arch-section {
+  padding: 48px 24px;
+}
+
+.blogo-landing .blogo-arch-diagram {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 32px;
+  background: var(--blogo-code-bg);
+  border-radius: 12px;
+  border: 1px solid var(--blogo-border);
+}
+
+.blogo-landing .blogo-arch-node {
+  padding: 12px 32px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  background: var(--blogo-card);
+  border: 2px solid var(--blogo-border);
+  color: var(--blogo-muted);
+  transition: all 0.4s ease;
+}
+
+.blogo-landing .blogo-arch-node.blogo-arch-lit {
+  border-color: rgb(47, 106, 217);
+  color: rgb(47, 106, 217);
+  box-shadow: 0 0 12px rgba(47, 106, 217, 0.3);
+}
+
+.blogo-landing .blogo-arch-arrow {
+  color: var(--blogo-muted);
+  font-size: 20px;
+  opacity: 0.6;
+}
+
+/* 功能详情：每个部分单独，下方预留示例图片，滚入时整体从下方弹出 */
+.blogo-landing .blogo-feature-item {
+  padding: 48px 0;
+  border-bottom: 1px solid var(--blogo-border);
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.blogo-landing .blogo-feature-item.blogo-feature-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.blogo-landing .blogo-feature-item:last-child {
+  border-bottom: none;
+}
+
+.blogo-landing .blogo-feature-item-content {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.blogo-landing .blogo-feature-block-title {
+  font-size: 32px;
+  font-weight: 600;
+  margin: 0 0 12px;
+  text-align: center;
+}
+
+.blogo-landing .blogo-feature-block-subtitle {
+  font-size: 20px;
+  color: rgb(47, 106, 217);
+  margin: 0 0 16px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.blogo-landing .blogo-feature-block-desc {
+  font-size: 20px;
+  color: var(--blogo-muted);
+  margin: 0;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.blogo-landing .blogo-feature-item-image {
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--blogo-border);
+}
+
+.blogo-landing .blogo-feature-item-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* 图片主题切换：light 图在亮色模式显示，dark 图在深色模式显示（与 Hextra html.dark 同步） */
+.blogo-landing .blogo-img-light,
+.blogo-hero-screenshot .blogo-img-light {
+  display: block !important;
+  width: 100%;
+}
+.blogo-landing .blogo-img-dark,
+.blogo-hero-screenshot .blogo-img-dark {
+  display: none !important;
+}
+html.dark .blogo-landing .blogo-img-light,
+html.dark .blogo-hero-screenshot .blogo-img-light {
+  display: none !important;
+}
+html.dark .blogo-landing .blogo-img-dark,
+html.dark .blogo-hero-screenshot .blogo-img-dark {
+  display: block !important;
+  width: 100%;
+}
+
+.blogo-landing .blogo-feature-image-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  background: var(--blogo-code-bg);
+  color: var(--blogo-muted);
+  font-size: 14px;
+}
+
+/* CTA - 边框 */
+.blogo-landing .blogo-cta {
+  padding: 64px 0;
+  text-align: center;
+  border: 1px solid var(--blogo-border);
+  border-radius: 12px;
+  margin: 48px 24px;
+}
+
+.blogo-landing .blogo-cta-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0 0 12px;
+}
+
+.blogo-landing .blogo-cta-desc {
+  font-size: 16px;
+  color: var(--blogo-muted);
+  margin: 0 0 24px;
+  line-height: 1.6;
+}
+
+.blogo-landing .blogo-cta .blogo-btn-deploy {
+  background: rgb(47, 106, 217);
+  color: white;
+  border: none;
+}
+
+.blogo-landing .blogo-cta .blogo-btn-start {
+  background: transparent;
+  color: rgb(47, 106, 217);
+  border: 2px solid var(--blogo-border);
+}
+
+/* Hextra 框架页脚内的 Blogo 内容 */
+.blogo-hextra-footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 24px 0;
+}
+
+.blogo-hextra-footer-brand {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.blogo-hextra-footer-nav {
+  display: flex;
+  gap: 24px;
+}
+
+.blogo-hextra-footer-nav a {
+  color: inherit;
+  text-decoration: none;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.blogo-hextra-footer-nav a:hover {
+  opacity: 1;
+}
+
+/* Footer - 上左品牌 上右链接 下方居中版权 (legacy, 已迁移到 Hextra) */
+.blogo-landing .blogo-footer {
+  padding: 48px 24px 32px;
+  border-top: 1px solid var(--blogo-border);
+}
+
+.blogo-landing .blogo-footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.blogo-landing .blogo-footer-brand {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.blogo-landing .blogo-footer-nav {
+  display: flex;
+  gap: 24px;
+}
+
+.blogo-landing .blogo-footer-nav a {
+  color: var(--blogo-muted);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.blogo-landing .blogo-footer-nav a:hover {
+  color: rgb(47, 106, 217);
+}
+
+.blogo-landing .blogo-footer-copy {
+  font-size: 13px;
+  color: var(--blogo-muted);
+  margin: 0;
+  text-align: center;
+}

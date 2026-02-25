@@ -1,0 +1,13 @@
+{{ define "main" }}
+<div class="hx:mx-auto hx:flex hextra-max-page-width">
+  {{ partial "sidebar.html" (dict "context" . "disableSidebar" true "displayPlaceholder" true) }}
+  {{ partial "toc.html" . }}
+  <article class="blogo-landing hx:w-full hx:break-words hx:min-h-[calc(100vh-var(--navbar-height))] hx:min-w-0 hx:flex hx:flex-col hx:justify-center hx:pb-8 hx:px-6 hx:md:px-12 hx:pr-[max(1.5rem,env(safe-area-inset-right))]">
+    {{ partial "blogo/hero.html" . }}
+    {{ partial "blogo/philosophy.html" . }}
+    {{ partial "blogo/features-detail.html" . }}
+    {{ partial "blogo/cta.html" . }}
+    {{ partial "blogo/scripts.html" . }}
+  </article>
+</div>
+{{ end }}

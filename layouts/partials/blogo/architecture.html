@@ -1,0 +1,35 @@
+<section class="blogo-section blogo-arch-section">
+  <div class="blogo-section-title">{{ T "blogo_architecture" }}</div>
+  <div class="blogo-arch-diagram">
+    <div class="blogo-arch-node blogo-arch-node-1" data-order="1">Browser</div>
+    <div class="blogo-arch-arrow">↓</div>
+    <div class="blogo-arch-node blogo-arch-node-2" data-order="2">Blogo CMS (Next.js)</div>
+    <div class="blogo-arch-arrow">↓</div>
+    <div class="blogo-arch-node blogo-arch-node-3" data-order="3">GitHub API</div>
+    <div class="blogo-arch-arrow">↓</div>
+    <div class="blogo-arch-node blogo-arch-node-4" data-order="4">Hexo Repository</div>
+    <div class="blogo-arch-arrow">↓</div>
+    <div class="blogo-arch-node blogo-arch-node-5" data-order="5">GitHub Pages</div>
+  </div>
+</section>
+<script>
+(function(){
+  var nodes=document.querySelectorAll('.blogo-arch-node');
+  if(!nodes.length)return;
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var section=e.target.closest('.blogo-arch-section');
+        if(section&&!section.dataset.played){
+          section.dataset.played='1';
+          nodes.forEach(function(n,i){
+            setTimeout(function(){n.classList.add('blogo-arch-lit');},i*400);
+          });
+        }
+      }
+    });
+  },{threshold:0.3});
+  var section=document.querySelector('.blogo-arch-section');
+  if(section)io.observe(section);
+})();
+</script>

@@ -1,0 +1,11 @@
+{{ define "main" }}
+{{ partial "sidebar.html" (dict "context" . "disableSidebar" true) }}
+<article class="blogo-landing max-w-none">
+  {{ partial "blogo/hero.html" . }}
+  {{ partial "blogo/philosophy.html" . }}
+  {{ partial "blogo/architecture.html" . }}
+  {{ partial "blogo/features.html" . }}
+  {{ partial "blogo/deployment.html" . }}
+  {{ partial "blogo/footer.html" . }}
+</article>
+{{ end }}

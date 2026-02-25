@@ -1,0 +1,64 @@
+<section class="blogo-hero-wrapper">
+  <div class="blogo-hero-ink"></div>
+  <div class="blogo-hero-inner container">
+    <div class="blogo-hero-left">
+      <h1 class="blogo-hero-title">
+        {{ T "blogo_hero_title_prefix" }}<span class="blogo-typewriter-wrap"><span class="blogo-typewriter" data-words="{{ T "blogo_typewriter_words" }}"></span><span class="blogo-typewriter-cursor">|</span></span>{{ T "blogo_hero_title_mid" }}<br>
+        {{ T "blogo_hero_title_suffix" }}
+      </h1>
+      <p class="blogo-hero-subtitle">{{ T "blogo_hero_desc" }}</p>
+      <div class="blogo-buttons">
+        <a href="/deploy-cms/" class="blogo-btn blogo-btn-deploy">{{ T "blogo_btn_deploy" }}</a>
+        <a href="/get-started/" class="blogo-btn blogo-btn-start">{{ T "blogo_btn_start" }}</a>
+      </div>
+    </div>
+    <div class="blogo-hero-right">
+      <div class="blogo-hero-screenshot">
+        <img src="/images/hero-light.png" alt="Blogo CMS 应用截图" class="blogo-img-light">
+        <img src="/images/hero-dark.png" alt="Blogo CMS 应用截图" class="blogo-img-dark">
+      </div>
+    </div>
+  </div>
+  <div class="blogo-hero-divider" aria-hidden="true">
+    <svg viewBox="0 0 1200 80" preserveAspectRatio="none">
+      {{/* 曲线：左侧幅度小，右侧向上幅度大 */}}
+      <path d="M0,50 C200,55 400,45 600,35 C800,20 1000,5 1200,0 L1200,80 L0,80 Z"/>
+    </svg>
+  </div>
+</section>
+<script>
+(function(){
+  var wrap=document.querySelector('.blogo-typewriter-wrap');
+  if(!wrap)return;
+  var el=wrap.querySelector('.blogo-typewriter');
+  var cur=wrap.querySelector('.blogo-typewriter-cursor');
+  if(!el)return;
+  var words=(el.getAttribute('data-words')||'存储无关,轻量,便捷').split(',');
+  var i=0,w=0,dir=1;
+  var printDelay=200,deleteDelay=10,wordPause=1000;
+  function tick(){
+    var word=words[w];
+    if(dir===1){
+      if(i<=word.length){
+        el.textContent=word.slice(0,i);
+        i++;
+        setTimeout(tick,printDelay);
+      }else{
+        setTimeout(function(){dir=-1;tick();},wordPause);
+      }
+    }else{
+      if(i>=0){
+        el.textContent=word.slice(0,i);
+        i--;
+        setTimeout(tick,deleteDelay);
+      }else{
+        w=(w+1)%words.length;
+        dir=1;
+        i=0;
+        setTimeout(tick,0);
+      }
+    }
+  }
+  tick();
+})();
+</script>
